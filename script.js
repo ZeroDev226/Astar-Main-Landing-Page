@@ -33,7 +33,8 @@ if (waitlistForm) {
     waitlistForm.addEventListener('submit', (e) => {
         e.preventDefault();
         const email = waitlistForm.querySelector('input').value;
-        alert(`Success! ${email} has been added to the waitlist.`);
+        const queueNum = Math.floor(Math.random() * 500) + 2400;
+        alert(`Success! You're #${queueNum} in line, Commander. We've sent a briefing to ${email}.`);
         waitlistForm.reset();
     });
 }

@@ -129,6 +129,29 @@ section {
     margin: 0;
 }
 
+.social-proof-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    background: rgba(45, 111, 232, 0.15);
+    padding: 8px 16px;
+    border-radius: 100px;
+    border: 1px solid var(--accent);
+    margin-bottom: 25px;
+}
+
+.social-proof-pill i {
+    color: var(--accent);
+    font-size: 14px;
+}
+
+.social-proof-pill span {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 14px;
+    letter-spacing: 1px;
+    color: white;
+}
+
 /* App Showcase Section - Immersive Blocks */
 .app-showcase {
     padding: 0;
@@ -231,6 +254,42 @@ section {
     .section-header h2 { font-size: 48px; }
     nav { padding: 20px; }
     nav.scrolled { padding: 15px 20px; }
+}
+
+.hero-mockup {
+    flex: 1;
+    display: flex;
+    justify-content: flex-end;
+    perspective: 1000px;
+}
+
+.phone-frame {
+    width: 320px;
+    height: 650px;
+    background: #1c1c1e;
+    border: 12px solid #2c2c2e;
+    border-radius: 48px;
+    position: relative;
+    box-shadow: 0 50px 100px rgba(0,0,0,0.8), 0 0 20px var(--accent-glow);
+    transform: rotateY(-15deg) rotateX(5deg);
+    transition: transform 0.5s cubic-bezier(0.165, 0.84, 0.44, 1);
+}
+
+.phone-frame:hover {
+    transform: rotateY(-5deg) rotateX(2deg) translateY(-10px);
+}
+
+.phone-frame::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 120px;
+    height: 25px;
+    background: #1c1c1e;
+    border-radius: 0 0 20px 20px;
+    z-index: 100;
 }
 
 .phone-screen {
