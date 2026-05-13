@@ -17,6 +17,7 @@
 
 html {
     scroll-behavior: smooth;
+    scroll-snap-type: y mandatory;
 }
 
 body {
@@ -103,13 +104,14 @@ section {
     padding: 80px;
     position: relative;
     overflow: hidden;
+    scroll-snap-align: start;
 }
 
 .hero {
     flex-direction: row;
     align-items: center;
     justify-content: space-between;
-    padding-top: 100px;
+    padding: 100px 80px;
 }
 
 .main-logo-box {
@@ -138,14 +140,46 @@ section {
     width: 100%;
     display: flex;
     align-items: center;
-    justify-content: center;
+    justify-content: space-between;
     gap: 100px;
     padding: 100px 80px;
     border-bottom: 1px solid var(--border);
+    scroll-snap-align: start;
+}
+
+.showcase-item.reverse {
+    flex-direction: row-reverse;
 }
 
 .showcase-item:nth-child(even) {
     background: rgba(255, 255, 255, 0.02);
+}
+
+.showcase-content {
+    flex: 1;
+    max-width: 600px;
+}
+
+.showcase-content h2:not(.tagline) {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 56px;
+    letter-spacing: 2px;
+    margin-bottom: 25px;
+    line-height: 1.1;
+}
+
+.showcase-content p {
+    color: var(--text-secondary);
+    font-size: 18px;
+    margin-bottom: 30px;
+    max-width: 500px;
+}
+
+.showcase-visual {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 /* Waitlist Section - Full Screen Conclusion */
@@ -1031,71 +1065,6 @@ section {
     font-size: 10px;
     color: var(--text-muted);
     font-weight: 600;
-}
-
-/* App Showcase Section */
-.app-showcase {
-    padding: 100px 0;
-    display: flex;
-    flex-direction: column;
-    gap: 150px;
-}
-
-.showcase-item {
-    display: flex;
-    align-items: center;
-    gap: 100px;
-}
-
-.showcase-item.reverse {
-    flex-direction: row-reverse;
-}
-
-.showcase-content {
-    flex: 1;
-}
-
-.showcase-content h2:not(.tagline) {
-    font-family: 'Bebas Neue', sans-serif;
-    font-size: 56px;
-    letter-spacing: 2px;
-    margin-bottom: 25px;
-    line-height: 1.1;
-}
-
-.showcase-content p {
-    color: var(--text-secondary);
-    font-size: 18px;
-    margin-bottom: 30px;
-    max-width: 500px;
-}
-
-.feature-list {
-    list-style: none;
-    display: flex;
-    flex-direction: column;
-    gap: 15px;
-}
-
-.feature-list li {
-    display: flex;
-    align-items: center;
-    gap: 15px;
-    font-size: 16px;
-    color: var(--text-primary);
-    font-weight: 500;
-}
-
-.feature-list i {
-    color: var(--accent);
-    font-size: 20px;
-}
-
-.showcase-visual {
-    flex: 1;
-    display: flex;
-    justify-content: center;
-    align-items: center;
 }
 
 /* XP Ring Mockup */
