@@ -1,599 +1,285 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Astra | Master Your Orbit</title>
-    <link rel="stylesheet" href="styles.css">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
-    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Astra — Focus & Flow</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet"/>
+<link rel="stylesheet" href="styles.css"/>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 </head>
 <body>
-    <canvas id="constellationCanvas"></canvas>
 
-    <!-- Fixed Branding Watermark -->
-    <div class="brand-watermark">
-        <svg viewBox="0 0 200 220" width="40" xmlns="http://www.w3.org/2000/svg">
-            <g transform="translate(100, 90)">
-                <path d="M0,-52 L6.5,-6.5 L52,0 L6.5,6.5 L0,52 L-6.5,6.5 L-52,0 L-6.5,-6.5 Z" fill="#2D6FE8"/>
-            </g>
-        </svg>
-        <span class="brand-name">ASTRA</span>
+<canvas id="starfield"></canvas>
+<div class="glow-top"></div>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-inner">
+    <div class="logo">
+      <svg width="24" height="24" viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg" style="margin-right: 8px; vertical-align: middle;">
+        <path d="M100 8C104 92 104 92 192 100C104 108 104 108 100 192C96 108 96 108 8 100C96 92 96 92 100 8Z" fill="white"/>
+      </svg>
+      Astra
     </div>
+    <div class="nav-badge">Waitlist Open</div>
+  </div>
+</nav>
 
-    <div class="glow-blob blob-1"></div>
-    <div class="glow-blob blob-2"></div>
-    <div class="glow-blob blob-3"></div>
+<!-- HERO -->
+<section class="hero">
+  <div class="glow-mid"></div>
+  <div class="container">
+    <div class="hero-eyebrow">The Productivity App That Actually Works</div>
+    <h1 class="hero-h1">
+      <svg width="80" height="80" viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg" style="margin-bottom: 20px;">
+        <path d="M100 8C104 92 104 92 192 100C104 108 104 108 100 192C96 108 96 108 8 100C96 92 96 92 100 8Z" fill="white"/>
+      </svg>
+      <br/>
+      Astra
+      <span class="hero-sub-line">Focus & Flow.</span>
+    </h1>
+    <p class="hero-sub">Astra combines habits, tasks, focus sessions, and gamified progress into one dark, beautiful app — built for people who are serious about getting things done.</p>
 
-    <main>
-        <section class="hero">
-            <div class="hero-content">
-                <div class="main-logo-box">
-                    <svg viewBox="0 0 200 220" width="120" xmlns="http://www.w3.org/2000/svg">
-                        <g transform="translate(100, 90)">
-                            <path d="M0,-52 L6.5,-6.5 L52,0 L6.5,6.5 L0,52 L-6.5,6.5 L-52,0 L-6.5,-6.5 Z" fill="#2D6FE8"/>
-                        </g>
-                    </svg>
-                    <h1 class="logo-text-large">ASTRA</h1>
-                </div>
-                <div class="social-proof-pill">
-                    <i class="ph ph-users"></i>
-                    <span>2,400+ COMMANDERS ON WAITLIST</span>
-                </div>
-                <h2 class="tagline">MASTER YOUR ORBIT</h2>
-                <p>Your missions. Your orbit. Total control. Streamline your workflow and achieve more every day.</p>
-
-                <div class="cta-group">
-                    <a href="#" class="btn-primary">GET STARTED</a>
-                    <a href="#" class="btn-secondary">LEARN MORE</a>
-                </div>
-            </div>
-
-            <div class="hero-mockup">
-                <div class="phone-frame">
-                    <div class="phone-screen">
-                        <!-- Mock app UI content based on actual InboxScreen -->
-                        <div class="app-status-bar">
-                            <div class="app-time">9:41</div>
-                            <div class="app-icons"><i class="ph ph-battery-full"></i></div>
-                        </div>
-
-                        <div class="app-scroll-content">
-                            <div class="app-header-card">
-                                <div class="header-top">
-                                    <div class="greeting-group">
-                                        <div class="app-greeting">GOOD MORNING</div>
-                                        <div class="app-user">ALEXANDER</div>
-                                    </div>
-                                    <div class="app-date-pill">JAN 24, 2024</div>
-                                </div>
-
-                                <div class="app-stats">
-                                    <div class="app-stat">
-                                        <div class="stat-icon-box"><i class="ph ph-check-circle"></i></div>
-                                        <span>8</span>
-                                        <label>TASKS</label>
-                                    </div>
-                                    <div class="app-stat">
-                                        <div class="stat-icon-box"><i class="ph ph-sparkle"></i></div>
-                                        <span>4</span>
-                                        <label>HABITS</label>
-                                    </div>
-                                    <div class="app-stat">
-                                        <div class="stat-icon-box"><i class="ph ph-fire"></i></div>
-                                        <span>12</span>
-                                        <label>STREAK</label>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="app-body">
-                                <div class="app-section-header">
-                                    <div class="section-icon"><i class="ph ph-sparkle"></i></div>
-                                    <span class="app-section-title">TODAY'S HABITS</span>
-                                </div>
-                                <div class="habit-strip">
-                                    <div class="habit-circle-item">
-                                        <div class="habit-circle"><i class="ph ph-drop"></i></div>
-                                        <span class="habit-name">WATER</span>
-                                    </div>
-                                    <div class="habit-circle-item">
-                                        <div class="habit-circle"><i class="ph ph-brain"></i></div>
-                                        <span class="habit-name">MEDITATE</span>
-                                    </div>
-                                    <div class="habit-circle-item">
-                                        <div class="habit-circle active"><i class="ph ph-book-open"></i></div>
-                                        <span class="habit-name">READ</span>
-                                    </div>
-                                    <div class="habit-circle-item">
-                                        <div class="habit-circle"><i class="ph ph-barbell"></i></div>
-                                        <span class="habit-name">GYM</span>
-                                    </div>
-                                </div>
-
-                                <div class="app-section-header">
-                                    <div class="section-icon"><i class="ph ph-calendar"></i></div>
-                                    <span class="app-section-title">TODAY'S TASKS</span>
-                                </div>
-                                <div class="task-list">
-                                    <div class="task-item">
-                                        <div class="checkbox"></div>
-                                        <div class="task-info">
-                                            <div class="task-title">Review Project Specs</div>
-                                            <div class="task-meta">9:30 AM • WORK</div>
-                                        </div>
-                                    </div>
-                                    <div class="task-item completed">
-                                        <div class="checkbox checked"><i class="ph ph-check"></i></div>
-                                        <div class="task-info">
-                                            <div class="task-title">Deep Work Session</div>
-                                            <div class="task-meta">COMPLETED • FOCUS</div>
-                                        </div>
-                                    </div>
-                                    <div class="task-item">
-                                        <div class="checkbox"></div>
-                                        <div class="task-info">
-                                            <div class="task-title">Design System Update</div>
-                                            <div class="task-meta">2:00 PM • DESIGN</div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- Real App Bottom Bar -->
-                        <div class="app-bottom-bar">
-                            <div class="nav-item active">
-                                <div class="nav-indicator"></div>
-                                <i class="ph ph-squares-four"></i>
-                                <span>INBOX</span>
-                            </div>
-                            <div class="nav-item">
-                                <div class="nav-indicator"></div>
-                                <i class="ph ph-calendar-blank"></i>
-                                <span>CALENDAR</span>
-                            </div>
-                            <div class="nav-item">
-                                <div class="nav-indicator"></div>
-                                <i class="ph ph-repeat"></i>
-                                <span>HABITS</span>
-                            </div>
-                            <div class="nav-item">
-                                <div class="nav-indicator"></div>
-                                <i class="ph ph-timer"></i>
-                                <span>FOCUS</span>
-                            </div>
-                            <div class="nav-item">
-                                <div class="nav-indicator"></div>
-                                <i class="ph ph-chart-bar"></i>
-                                <span>STATS</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
+    <div class="waitlist-form" id="hero-form">
+      <input type="email" placeholder="Enter your email address" id="hero-email"/>
+      <button class="btn-primary" onclick="joinWaitlist('hero')">Join Waitlist</button>
+    </div>
+    <div class="success-msg" id="hero-success">
+      <span>✦</span> You're on the list! We'll reach out soon.
+    </div>
+    <p class="waitlist-note">
+      <span>✦ 1,200+ people</span> already on the waitlist · Free early access
+    </p>
+  </div>
+</section>
 
 
-        <section id="features" class="app-showcase">
-            <!-- Full App Preview: Dashboard -->
-            <div class="showcase-item">
-                <div class="showcase-content">
-                    <h2 class="tagline">MISSION CONTROL</h2>
-                    <h2>THE ASTRA DASHBOARD</h2>
-                    <p>Your central command. A clean, tactical overview of your day. High-priority missions, habit streaks, and XP stats all in one place.</p>
-                    <ul class="feature-list">
-                        <li><i class="ph ph-layout"></i> <strong>Clean Architecture:</strong> Focus on what matters.</li>
-                        <li><i class="ph ph-lightning"></i> <strong>Tactical Stats:</strong> Real-time tracking of your progress.</li>
-                    </ul>
-                </div>
-                <div class="showcase-visual">
-                    <div class="hero-mockup">
-                        <div class="phone-frame">
-                            <div class="phone-screen">
-                                <div class="app-status-bar">
-                                    <div class="app-time">9:41</div>
-                                    <div class="app-icons"><i class="ph ph-battery-full"></i></div>
-                                </div>
-                                <div class="app-scroll-content">
-                                    <div class="app-header-card">
-                                        <div class="header-top">
-                                            <div class="greeting-group">
-                                                <div class="app-greeting">GOOD MORNING</div>
-                                                <div class="app-user">ALEXANDER</div>
-                                            </div>
-                                            <div class="app-date-pill">JAN 24, 2024</div>
-                                        </div>
-                                        <div class="app-stats">
-                                            <div class="app-stat">
-                                                <div class="stat-icon-box"><i class="ph ph-check-circle"></i></div>
-                                                <span>8</span>
-                                                <label>TASKS</label>
-                                            </div>
-                                            <div class="app-stat">
-                                                <div class="stat-icon-box"><i class="ph ph-sparkle"></i></div>
-                                                <span>4</span>
-                                                <label>HABITS</label>
-                                            </div>
-                                            <div class="app-stat">
-                                                <div class="stat-icon-box"><i class="ph ph-fire"></i></div>
-                                                <span>12</span>
-                                                <label>STREAK</label>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="app-body">
-                                        <div class="app-section-header">
-                                            <div class="section-icon"><i class="ph ph-sparkle"></i></div>
-                                            <span class="app-section-title">TODAY'S HABITS</span>
-                                        </div>
-                                        <div class="habit-strip">
-                                            <div class="habit-circle-item">
-                                                <div class="habit-circle"><i class="ph ph-drop"></i></div>
-                                                <span class="habit-name">WATER</span>
-                                            </div>
-                                            <div class="habit-circle-item">
-                                                <div class="habit-circle active"><i class="ph ph-brain"></i></div>
-                                                <span class="habit-name">MEDITATE</span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="app-bottom-bar">
-                                    <div class="nav-item active"><i class="ph ph-squares-four"></i><span>INBOX</span></div>
-                                    <div class="nav-item"><i class="ph ph-calendar-blank"></i><span>CALENDAR</span></div>
-                                    <div class="nav-item"><i class="ph ph-timer"></i><span>FOCUS</span></div>
-                                    <div class="nav-item"><i class="ph ph-chart-bar"></i><span>STATS</span></div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+<!-- STATS STRIP -->
+<section class="stats-strip reveal">
+  <div class="container">
+    <div class="stats-inner">
+      <div class="stat-item">
+        <div class="stat-num">1<span>,</span>200<span>+</span></div>
+        <div class="stat-label">On the waitlist</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-num">6<span>+</span></div>
+        <div class="stat-label">Custom themes</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-num">87<span>%</span></div>
+        <div class="stat-label">Avg. task completion rate</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-num">∞</div>
+        <div class="stat-label">Streak potential</div>
+      </div>
+    </div>
+  </div>
+</section>
 
-            <!-- States of Light -->
-            <div class="showcase-item reverse">
-                <div class="showcase-content">
-                    <h2 class="tagline">STATES OF LIGHT</h2>
-                    <h2>EVOLVE YOUR PRESENCE</h2>
-                    <p>Track your evolution. Earn XP to climb from Stardust to the ultimate state of flow: <strong>Astra</strong>.</p>
-                    <ul class="feature-list">
-                        <li><i class="ph ph-sparkle"></i> <strong>Tactical Ranks:</strong> Nova, Radiance, and Astra.</li>
-                        <li><i class="ph ph-medal"></i> <strong>Milestones:</strong> Unlock unique achievement badges.</li>
-                    </ul>
-                </div>
-                <div class="showcase-visual">
-                    <div class="xp-ring-mockup">
-                        <div class="xp-ring-outer">
-                            <div class="xp-ring-inner">
-                                <span class="xp-value">365</span>
-                                <span class="xp-label">WEEKLY XP</span>
-                            </div>
-                        </div>
-                        <div class="rank-badge">
-                            <i class="ph ph-stars"></i>
-                            <span>ASTRA</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
+<!-- FEATURES -->
+<section class="features">
+  <div class="container">
+    <div class="section-label reveal">
+      <div class="eyebrow">What makes Astra different</div>
+      <h2>Built different.<br/>By design.</h2>
+      <p>Every feature is intentional. No bloat, no filler — just the tools that actually move the needle.</p>
+    </div>
+    <div class="features-grid">
 
-            <!-- Focus Engine -->
-            <div class="showcase-item reverse">
-                <div class="showcase-content">
-                    <h2 class="tagline">DEEP FOCUS</h2>
-                    <h2>THE FOCUS ENGINE</h2>
-                    <p>Enter the "ultimate state of flow." Eliminate distractions and achieve sustained focus with precision-tuned sessions.</p>
-                    <ul class="feature-list">
-                        <li><i class="ph ph-brain"></i> <strong>Flow State:</strong> Optimized for cognitive output.</li>
-                        <li><i class="ph ph-clock"></i> <strong>Adaptive Rest:</strong> Intelligent recovery periods.</li>
-                    </ul>
-                </div>
-                <div class="showcase-visual">
-                    <div class="timer-mockup">
-                        <div class="timer-display">25:00</div>
-                        <div class="timer-controls">
-                            <div class="timer-btn"><i class="ph ph-stop"></i></div>
-                            <div class="timer-btn primary"><i class="ph ph-play"></i></div>
-                            <div class="timer-btn"><i class="ph ph-skip-forward"></i></div>
-                        </div>
-                        <div class="timer-task">DEEP WORK: CORE MODULE</div>
-                    </div>
-                </div>
-            </div>
+      <div class="feature-card highlight reveal">
+        <div class="feature-icon">🔔</div>
+        <h3>Nag Mode</h3>
+        <p>Forgot something important? Astra won't let you off the hook. Nag Mode sends persistent, escalating reminders until a task is marked done — no more "I'll do it later" moments.</p>
+        <span class="feature-tag">⚡ Signature Feature</span>
+      </div>
 
-            <!-- Nag Mode -->
-            <div class="showcase-item">
-                <div class="showcase-content">
-                    <h2 class="tagline">SMART SYSTEMS</h2>
-                    <h2>NAG MODE</h2>
-                    <p>The "Relentless Ally." High-priority missions stay front and center with persistent, intelligent nudges.</p>
-                    <ul class="feature-list">
-                        <li><i class="ph ph-bell-ringing"></i> <strong>Critical Nudges:</strong> Ensures mission completion.</li>
-                        <li><i class="ph ph-target"></i> <strong>One Tap:</strong> Back on track in seconds.</li>
-                    </ul>
-                </div>
-                <div class="showcase-visual">
-                    <div class="notification-mockup">
-                        <div class="notif-header">
-                            <i class="ph ph-sparkle"></i>
-                            <span>ASTRA CRITICAL</span>
-                        </div>
-                        <div class="notif-body">
-                            <h3>MISSION PENDING</h3>
-                            <p>One tap is all it takes to get back on track. Your streak is waiting.</p>
-                        </div>
-                        <div class="notif-actions">
-                            <div class="notif-btn">SNOOZE</div>
-                            <div class="notif-btn primary">COMPLETE</div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+      <div class="feature-card reveal" style="transition-delay:0.1s;">
+        <div class="feature-icon">🚫</div>
+        <h3>App Blocker</h3>
+        <p>During deep focus sessions, Astra locks you out of distracting apps so your attention stays where it belongs. Breaks are built in — work hard, rest right, then go again.</p>
+        <span class="feature-tag">Deep Focus</span>
+      </div>
 
-            <!-- Intel & Analytics -->
-            <div class="showcase-item reverse">
-                <div class="showcase-content">
-                    <h2 class="tagline">INTEL & ANALYTICS</h2>
-                    <h2>DATA-DRIVEN CLARITY</h2>
-                    <p>Gain deep insights into your performance. Track completion rates, focus trends, and cognitive distribution through a tactical lens.</p>
-                    <ul class="feature-list">
-                        <li><i class="ph ph-chart-line-up"></i> <strong>Efficiency Metrics:</strong> Visualizing your productivity curve.</li>
-                        <li><i class="ph ph-target"></i> <strong>Goal Tracking:</strong> Real-time progress against your objectives.</li>
-                    </ul>
-                </div>
-                <div class="showcase-visual">
-                    <div class="stats-mockup">
-                        <div class="stats-grid">
-                            <div class="stat-tile">
-                                <span class="tile-label">COMPLETED</span>
-                                <span class="tile-value accent">42</span>
-                            </div>
-                            <div class="stat-tile">
-                                <span class="tile-label">ACTIVE</span>
-                                <span class="tile-value">18</span>
-                            </div>
-                            <div class="stat-tile">
-                                <span class="tile-label">STREAK</span>
-                                <span class="tile-value">12</span>
-                            </div>
-                            <div class="stat-tile">
-                                <span class="tile-label">XP</span>
-                                <span class="tile-value">365</span>
-                            </div>
-                        </div>
-                        <div class="insight-card">
-                            <i class="ph ph-lightbulb"></i>
-                            <span>You are 15% more focused in the morning.</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
+      <div class="feature-card reveal" style="transition-delay:0.2s;">
+        <div class="feature-icon">🎨</div>
+        <h3>Custom Themes</h3>
+        <p>Six beautiful colour palettes — purple, orange, cyan, green, blue, and silver — each applying consistently across every screen. Make it yours.</p>
+        <span class="feature-tag">Personalization</span>
+      </div>
 
-            <!-- The Calendar -->
-            <div class="showcase-item">
-                <div class="showcase-content">
-                    <h2 class="tagline">TACTICAL PLANNING</h2>
-                    <h2>THE CALENDAR</h2>
-                    <p>Your timeline, perfected. A seamless integration of tasks and schedules designed to minimize cognitive load and maximize flow.</p>
-                    <ul class="feature-list">
-                        <li><i class="ph ph-calendar-blank"></i> <strong>Timeline View:</strong> See your missions chronologically.</li>
-                        <li><i class="ph ph-clock"></i> <strong>Smart Blocking:</strong> Automatic time allocation for deep work.</li>
-                    </ul>
-                </div>
-                <div class="showcase-visual">
-                    <div class="calendar-mockup">
-                        <div class="cal-header">JANUARY 2024</div>
-                        <div class="cal-days">
-                            <span>21</span><span>22</span><span class="active">23</span><span>24</span><span>25</span><span>26</span><span>27</span>
-                        </div>
-                        <div class="cal-event">
-                            <div class="event-time">09:30</div>
-                            <div class="event-info">
-                                <span class="event-title">PROJECT ASTRA REVIEW</span>
-                                <span class="event-desc">MISSION CRITICAL</span>
-                            </div>
-                        </div>
-                        <div class="cal-event">
-                            <div class="event-time">14:00</div>
-                            <div class="event-info">
-                                <span class="event-title">DEEP WORK: CORE UI</span>
-                                <span class="event-desc">FOCUS SESSION</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+      <div class="feature-card reveal" style="transition-delay:0s;">
+        <div class="feature-icon">🔥</div>
+        <h3>Streak Tracking</h3>
+        <p>Build unstoppable momentum with per-habit streaks. Watch your consistency compound over days, weeks, and months into something you're genuinely proud of.</p>
+        <span class="feature-tag">Habits</span>
+      </div>
 
-            <!-- Shield System -->
-            <div class="showcase-item reverse">
-                <div class="showcase-content">
-                    <h2 class="tagline">CONSISTENCY</h2>
-                    <h2>SHIELD SYSTEM</h2>
-                    <p>Life happens. Astra protects your momentum with tactical Shields that keep your streaks alive during interruptions.</p>
-                    <ul class="feature-list">
-                        <li><i class="ph ph-shield-chevron"></i> <strong>Streak Protection:</strong> Safety net for your habits.</li>
-                        <li><i class="ph ph-lightning"></i> <strong>Recharge:</strong> Earn shields back through consistency.</li>
-                    </ul>
-                </div>
-                <div class="showcase-visual">
-                    <div class="shield-mockup">
-                        <div class="shield-icon"><i class="ph ph-shield-check"></i></div>
-                        <div class="shield-status">SHIELD ACTIVE</div>
-                        <div class="shield-desc">YOUR 12-DAY STREAK IS SECURED</div>
-                    </div>
-                </div>
-            </div>
+      <div class="feature-card reveal" style="transition-delay:0.1s;">
+        <div class="feature-icon">📊</div>
+        <h3>Rich Stats</h3>
+        <p>Heatmaps, weekly bar charts, category breakdowns, and all-time totals give you a real picture of how you're spending your time and energy.</p>
+        <span class="feature-tag">Analytics</span>
+      </div>
 
-            <!-- Location Reminders -->
-            <div class="showcase-item">
-                <div class="showcase-content">
-                    <h2 class="tagline">CONTEXT AWARE</h2>
-                    <h2>LOCATION MISSIONS</h2>
-                    <p>Missions that trigger precisely when they matter. Get reminded when you arrive or leave key locations.</p>
-                    <ul class="feature-list">
-                        <li><i class="ph ph-map-pin-line"></i> <strong>Geo-Fencing:</strong> Precise trigger zones.</li>
-                        <li><i class="ph ph-navigation-arrow"></i> <strong>Seamless:</strong> Zero-effort context switching.</li>
-                    </ul>
-                </div>
-                <div class="showcase-visual">
-                    <div class="location-mockup">
-                        <div class="map-circle">
-                            <div class="map-dot"></div>
-                            <div class="map-pulse"></div>
-                        </div>
-                        <div class="location-card">
-                            <span class="loc-label">TARGET ARRIVAL</span>
-                            <span class="loc-name">THE GYM</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
+      <div class="feature-card reveal" style="transition-delay:0.2s;">
+        <div class="feature-icon">✦</div>
+        <h3>Stardust XP</h3>
+        <p>Every completed task and habit earns XP toward your Stardust level. Progress from a small sprout to a cosmic force — your consistency has a score.</p>
+        <span class="feature-tag">Gamification</span>
+      </div>
 
-        <section id="how-it-works" class="how-it-works">
-            <div class="section-header">
-                <p class="section-subtitle">THE WORKFLOW</p>
-                <h2>THE ASTRA METHOD</h2>
-            </div>
+    </div>
+  </div>
+</section>
 
-            <div class="steps-container">
-                <div class="step">
-                    <div class="step-number">01</div>
-                    <div class="step-content">
-                        <h3>INITIALIZE MISSIONS</h3>
-                        <p>Set clear objectives and organize them by priority. Astra's smart parser understands your intent and categorizes your goals automatically.</p>
-                    </div>
-                </div>
-                <div class="step">
-                    <div class="step-number">02</div>
-                    <div class="step-content">
-                        <h3>ENGAGE FLOW STATE</h3>
-                        <p>Leverage timed sessions to eliminate distractions. Achieve peak productivity through sustained focus with the Focus Engine.</p>
-                    </div>
-                </div>
-                <div class="step">
-                    <div class="step-number">03</div>
-                    <div class="step-content">
-                        <h3>EVOLVE RANK</h3>
-                        <p>Earn XP for every mission completed. Watch your profile evolve as you build consistency and unlock achievement milestones.</p>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <section id="faq" class="faq">
-            <div class="section-header">
-                <p class="section-subtitle">INTEL</p>
-                <h2>BRIEFING</h2>
-            </div>
-            <div class="faq-list">
-                <div class="faq-item">
-                    <h3>Is Astra available on mobile?</h3>
-                    <p>Yes, Astra is designed for cross-platform performance on both iOS and Android. Mobile-first, performance-driven.</p>
-                </div>
-                <div class="faq-item">
-                    <h3>Does it support offline work?</h3>
-                    <p>Absolutely. Your data is stored locally and syncs automatically when you're back online. Never lose momentum.</p>
-                </div>
-                <div class="faq-item">
-                    <h3>What is "Nag Mode"?</h3>
-                    <p>A smart notification feature that nudges you about high-priority missions until they are completed. Your relentless ally.</p>
-                </div>
-                <div class="faq-item">
-                    <h3>How does the Shield System work?</h3>
-                    <p>Shields are earned through consistency. They automatically activate to protect your streak if you miss a day, keeping your momentum intact.</p>
-                </div>
-            </div>
-        </section>
-
-        <section class="waitlist">
-            <div class="waitlist-card">
-                <h2>READY TO START?</h2>
-                <p>Join 2,400+ commanders already securing their orbit in the Astra ecosystem.</p>
-
-                <div class="waitlist-benefits">
-                    <div class="benefit-item"><i class="ph ph-list-numbers"></i> <span>Be the first to try the app</span></div>
-                    <div class="benefit-item"><i class="ph ph-medal"></i> <span>Exclusive Founder's Badge</span></div>
-                    <div class="benefit-item"><i class="ph ph-rocket-launch"></i> <span>Early access to new features</span></div>
-                    <div class="benefit-item"><i class="ph ph-crown"></i> <span>Priority onboarding support</span></div>
-                </div>
-
-                <form class="waitlist-form">
-                    <input type="email" placeholder="Enter your email" required>
-                    <button type="submit" class="btn-primary">JOIN WAITLIST</button>
-                </form>
-            </div>
-        </section>
-    </main>
-
-    <footer>
-        <div class="footer-content">
-            <div class="footer-brand">
-                <div class="logo">
-                    <svg viewBox="0 0 200 220" width="140" xmlns="http://www.w3.org/2000/svg">
-                        <!-- Main large 4-point sparkle -->
-                        <g transform="translate(100, 90)">
-                            <path d="M0,-52 L6.5,-6.5 L52,0 L6.5,6.5 L0,52 L-6.5,6.5 L-52,0 L-6.5,-6.5 Z" fill="#2D6FE8"/>
-                        </g>
-                        <!-- Secondary smaller sparkle, bottom-left -->
-                        <g transform="translate(46, 138)">
-                            <path d="M0,-18 L2.3,-2.3 L18,0 L2.3,2.3 L0,18 L-2.3,2.3 L-18,0 L-2.3,-2.3 Z" fill="#5B8DEF" opacity="0.85"/>
-                        </g>
-                        <!-- Tiny dot accent top-right -->
-                        <circle cx="148" cy="52" r="4" fill="#5B8DEF" opacity="0.55"/>
-                        <!-- Tiny dot bottom-right -->
-                        <circle cx="156" cy="148" r="3" fill="#5B8DEF" opacity="0.4"/>
-
-                        <!-- Wordmark -->
-                        <text x="100" y="185"
-                          font-family="Georgia, 'Times New Roman', serif"
-                          font-size="38"
-                          font-weight="700"
-                          text-anchor="middle"
-                          fill="white"
-                          letter-spacing="3">Astra</text>
-
-                        <!-- Tagline -->
-                        <text x="100" y="207"
-                          font-family="'Helvetica Neue', Arial, sans-serif"
-                          font-size="9"
-                          font-weight="500"
-                          text-anchor="middle"
-                          fill="#5B8DEF"
-                          letter-spacing="4"
-                          opacity="0.75">EXPLORE THE COSMOS</text>
-                    </svg>
-                </div>
-                <p>MASTER YOUR FOCUS</p>
-            </div>
-            <div class="footer-links">
-                <div class="link-group">
-                    <h4>Product</h4>
-                    <a href="#features">Features</a>
-                    <a href="#">Roadmap</a>
-                    <a href="#">Pricing</a>
-                </div>
-                <div class="link-group">
-                    <h4>Company</h4>
-                    <a href="#">About</a>
-                    <a href="#">Blog</a>
-                    <a href="#">Privacy</a>
-                </div>
-                <div class="link-group">
-                    <h4>Social</h4>
-                    <a href="#">Twitter</a>
-                    <a href="#">LinkedIn</a>
-                </div>
-            </div>
+<!-- NAG MODE DEEP DIVE -->
+<section class="nag-section">
+  <div class="container">
+    <div class="nag-row">
+      <div class="nag-text reveal">
+        <div style="font-size:11px;font-weight:500;letter-spacing:0.14em;text-transform:uppercase;color:var(--white);margin-bottom:16px;">⚡ Nag Mode</div>
+        <h2>We'll remind you.<br/>And remind you.<br/><em>And remind you.</em></h2>
+        <p>Most apps send one notification and forget you. Astra's Nag Mode keeps nudging you at escalating intervals until the task is actually done. Because procrastination is a habit too — and this one we help you break.</p>
+        <div class="nag-pills">
+          <span class="pill active">First reminder</span>
+          <span class="pill active">5 min later</span>
+          <span class="pill active">15 min later</span>
+          <span class="pill">30 min later</span>
+          <span class="pill">Keeps going...</span>
         </div>
-        <div class="footer-bottom">
-            <p>&copy; 2026 ASTRA PRODUCTIVITY. ALL RIGHTS RESERVED.</p>
+      </div>
+      <div class="nag-visual reveal" style="transition-delay:0.2s;">
+        <div class="notif-stack">
+          <div class="notif-card">
+            <div class="notif-icon">🔔</div>
+            <div class="notif-body">
+              <div class="notif-title">Astra · Nag Mode</div>
+              <div class="notif-sub">Still haven't done "Write weekly review" 👀</div>
+            </div>
+            <div class="notif-time">now</div>
+          </div>
+          <div class="notif-card">
+            <div class="notif-icon">🔔</div>
+            <div class="notif-body">
+              <div class="notif-title">Astra · Nag Mode</div>
+              <div class="notif-sub">Seriously though — "Call Alhaja" is still pending</div>
+            </div>
+            <div class="notif-time">5m ago</div>
+          </div>
+          <div class="notif-card" style="opacity:0.5;">
+            <div class="notif-icon">🔔</div>
+            <div class="notif-body">
+              <div class="notif-title">Astra · Nag Mode</div>
+              <div class="notif-sub">We'll keep going. You know what to do.</div>
+            </div>
+            <div class="notif-time">20m ago</div>
+          </div>
         </div>
-    </footer>
+      </div>
+    </div>
+  </div>
+</section>
 
-    <script src="script.js"></script>
+<!-- THEME SECTION -->
+<section class="theme-section">
+  <div class="container">
+    <div class="section-label reveal">
+      <div class="eyebrow">Custom Themes</div>
+      <h2>Your app,<br/>your colours.</h2>
+      <p>Pick a theme that matches your energy. Every accent, card, button, and icon adapts — completely and instantly.</p>
+    </div>
+    <div class="theme-swatches reveal">
+      <div class="swatch-col"><div class="swatch s1"></div><div class="swatch-label">Purple</div></div>
+      <div class="swatch-col"><div class="swatch s2"></div><div class="swatch-label">Ember</div></div>
+      <div class="swatch-col"><div class="swatch s3"></div><div class="swatch-label">Cyan</div></div>
+      <div class="swatch-col"><div class="swatch s4"></div><div class="swatch-label">Forest</div></div>
+      <div class="swatch-col"><div class="swatch s5"></div><div class="swatch-label">Ocean</div></div>
+      <div class="swatch-col"><div class="swatch s6"></div><div class="swatch-label">Silver</div></div>
+    </div>
+    <p class="theme-note reveal">More themes coming with launch · Community votes decide what's next</p>
+  </div>
+</section>
+
+<!-- XP GAMIFICATION -->
+<section class="xp-section">
+  <div class="container">
+    <div class="section-label reveal">
+      <div class="eyebrow">Stardust XP System</div>
+      <h2>Consistency<br/>has a score.</h2>
+      <p>Every task you complete, every habit you keep, every streak you maintain — it all adds up to your Stardust XP level.</p>
+    </div>
+    <div class="xp-grid">
+      <div class="xp-card-big reveal">
+        <div>
+          <h3>From Stardust to Cosmos</h3>
+          <p>Start as a small sprout and grow into something legendary. Your XP level reflects your real-world consistency — earned, not bought.</p>
+        </div>
+        <div class="level-bar">
+          <div class="level-bar-label"><span>Current: <strong>Stardust</strong></span><span>142 / 500 XP</span></div>
+          <div class="level-bar-track"><div class="level-bar-fill"></div></div>
+          <div class="level-tiers">
+            <span class="tier current">✦ Stardust</span>
+            <span class="tier">Spark</span>
+            <span class="tier">Glow</span>
+            <span class="tier">Radiance</span>
+            <span class="tier">Nova</span>
+            <span class="tier">Astra</span>
+          </div>
+        </div>
+      </div>
+      <div class="xp-stack">
+        <div class="xp-mini-card reveal" style="transition-delay:0.1s;">
+          <h4>✦ Daily Completions</h4>
+          <p>Finish all your habits for the day? XP bonus. Perfect week? Even bigger reward.</p>
+        </div>
+        <div class="xp-mini-card reveal" style="transition-delay:0.2s;">
+          <h4>🔥 Streak Multipliers</h4>
+          <p>The longer your streak, the more XP each habit earns. Consistency compounds.</p>
+        </div>
+        <div class="xp-mini-card reveal" style="transition-delay:0.3s;">
+          <h4>📊 Leaderboard</h4>
+          <p>Compare your Stardust level with friends. Healthy competition never hurt anyone.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FINAL CTA -->
+<section class="cta-section">
+  <div class="container">
+    <div class="cta-box reveal">
+      <h2>Ready to own<br/>your days?</h2>
+      <p>Join the waitlist and get early access to Astra when we launch. Free for the first wave of users.</p>
+      <div class="cta-form" id="cta-form">
+        <input type="email" placeholder="your@email.com" id="cta-email"/>
+        <button class="btn-primary" onclick="joinWaitlist('cta')">Get Early Access</button>
+      </div>
+      <div class="success-msg" id="cta-success">
+        <span>✦</span> You're on the list! Early access incoming.
+      </div>
+      <p style="font-size:13px;color:var(--muted);margin-top:16px;">No spam. No credit card. Just Astra.</p>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="container">
+    <div class="footer-logo">
+      <svg width="24" height="24" viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg" style="margin-right: 8px; vertical-align: middle;">
+        <path d="M100 8C104 92 104 92 192 100C104 108 104 108 100 192C96 108 96 108 8 100C96 92 96 92 100 8Z" fill="white"/>
+      </svg>
+      Astra
+    </div>
+    <p>© 2026 Astra. Crafted with intention. Built for focus.</p>
+  </div>
+</footer>
+
+<script src="script.js"></script>
 </body>
 </html>
