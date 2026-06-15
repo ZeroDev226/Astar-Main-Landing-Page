@@ -63,15 +63,29 @@ document.querySelectorAll('.reveal').forEach(el => {
   observer.observe(el);
 });
 
-// ── Waitlist Logic (Mock) ──
-function joinWaitlist(type) {
+// ── Waitlist Logic (Supabase) ──
+const supabaseUrl = 'https://owuvvjibqikiyxyucdsi.supabase.co';
+const supabaseKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im93dXZ2amlicWlraXl4eXVjZHNpIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzczOTI1NDUsImV4cCI6MjA5Mjk2ODU0NX0.VJ0u7vny8Vrwg6yw2wflZfOJ287oqVAU_ZVImD3isco';
+const _supabase = supabase.createClient(supabaseUrl, supabaseKey);
+
+async function joinWaitlist(type) {
   const emailInput = document.getElementById(type + '-email');
   const form = document.getElementById(type + '-form');
   const success = document.getElementById(type + '-success');
+  const email = emailInput.value.trim();
 
-  if (emailInput.value.includes('@')) {
-    form.style.display = 'none';
-    success.style.display = 'block';
+  if (email.includes('@')) {
+    try {
+      const { error } = await _supabase
+        .from('waitlist')
+        .insert([{ email: email, source: type }]);qa    4
+
+      if (error) throw error;217      form.style.display = 'none';
+      success.style.display = 'block';
+    } catch (err) {
+      console.error('Waitlist Error:', err);
+      alert('Something went wrong. Please try again later.');
+    }
   } else {
     alert('Please enter a valid email address.');
   }
