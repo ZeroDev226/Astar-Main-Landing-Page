@@ -1,0 +1,226 @@
+:root {
+  --purple: #ffffff;
+  --purple-light: #d4d4d8;
+  --purple-dim: rgba(255,255,255,0.1);
+  --gold: #a1a1aa;
+  --white: #f4f4f5;
+  --off-white: #d4d4d8;
+  --muted: #71717a;
+  --bg: #000000;
+  --bg2: #09090b;
+  --card: #18181b;
+  --border: rgba(255,255,255,0.1);
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  background: var(--bg);
+  color: var(--white);
+  font-family: 'DM Sans', sans-serif;
+  font-size: 16px;
+  line-height: 1.6;
+  overflow-x: hidden;
+}
+
+/* ── Canvas starfield ── */
+#starfield {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+}
+
+/* ── Noise grain overlay ── */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+  background-size: 200px 200px;
+  opacity: 0.35;
+}
+
+/* ── Radial glows ── */
+.glow-top {
+  position: fixed;
+  top: -200px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 900px;
+  height: 600px;
+  background: radial-gradient(ellipse, rgba(255,255,255,0.05) 0%, transparent 70%);
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* ── Layout ── */
+.container {
+  position: relative;
+  z-index: 2;
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+/* ── NAV ── */
+nav {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 100;
+  padding: 20px 0;
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-bottom: 1px solid var(--border);
+  background: rgba(0,0,0,0.7);
+}
+.nav-inner {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 0 24px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.logo {
+  font-family: 'Syne', sans-serif;
+  font-size: 22px;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  color: var(--white);
+}
+.nav-badge {
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--white);
+  border: 1px solid rgba(255,255,255,0.2);
+  padding: 6px 16px;
+  border-radius: 100px;
+  letter-spacing: 0.04em;
+  background: transparent;
+}
+
+/* ── Content ── */
+.policy-content {
+  padding: 160px 0 100px;
+  position: relative;
+  z-index: 2;
+}
+
+.section-label {
+  text-align: left;
+  margin-bottom: 60px;
+}
+.section-label .eyebrow {
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin-bottom: 16px;
+}
+.section-label h1 {
+  font-family: 'Syne', sans-serif;
+  font-size: clamp(40px, 6vw, 64px);
+  font-weight: 800;
+  letter-spacing: -0.04em;
+  line-height: 1.0;
+  color: var(--white);
+  margin-bottom: 24px;
+}
+.section-label p {
+  color: var(--muted);
+  font-size: 18px;
+  font-weight: 300;
+  max-width: 600px;
+  line-height: 1.6;
+}
+
+.policy-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+}
+
+.policy-card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 24px;
+  padding: 40px;
+  position: relative;
+  overflow: hidden;
+}
+
+.policy-card h3 {
+  font-family: 'Syne', sans-serif;
+  font-size: 22px;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  margin-bottom: 20px;
+  color: var(--white);
+}
+
+.policy-card p {
+  font-size: 16px;
+  color: var(--off-white);
+  line-height: 1.7;
+  font-weight: 300;
+  margin-bottom: 16px;
+}
+
+.policy-card ul {
+    margin-left: 20px;
+    margin-bottom: 16px;
+    color: var(--muted);
+}
+
+.policy-card li {
+    margin-bottom: 12px;
+    font-size: 15px;
+    font-weight: 300;
+}
+
+.policy-card li strong {
+    color: var(--white);
+    font-weight: 600;
+}
+
+/* ── Footer ── */
+footer {
+  position: relative;
+  z-index: 2;
+  border-top: 1px solid var(--border);
+  padding: 60px 0;
+  text-align: center;
+}
+.footer-logo {
+  font-family: 'Syne', sans-serif;
+  font-size: 18px;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  margin-bottom: 12px;
+}
+footer p {
+  font-size: 13px;
+  color: var(--muted);
+}
+
+/* ── Animations ── */
+.reveal {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+.reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+@media (max-width: 768px) {
+  .section-label h1 { font-size: 40px; }
+  .policy-card { padding: 32px 24px; }
+}
